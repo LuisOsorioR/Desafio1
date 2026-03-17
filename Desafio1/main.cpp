@@ -7,6 +7,7 @@ using namespace std;
 
 bool rejugar = true, alturaValid, anchoValid;
 int altura = 0, ancho = 0, correccion;
+unsigned int* tablero;
 
 int main()
 {
@@ -37,5 +38,8 @@ int main()
                 anchoValid = false;
             }
         }
+
+        tablero = crearTablero(altura);
+        imprimir(altura, ancho, tablero);
     }
 }
