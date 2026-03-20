@@ -49,3 +49,10 @@ unsigned short L[3] = {
     0b11
 };
 
+
+void generarL(unsigned int* tablero, int X){
+    tablero[0] = 0b1<<(X-1);
+    tablero[1] = 0b1<<(X-1);
+    tablero[2] = 0b11<<(X-1);
+}
+

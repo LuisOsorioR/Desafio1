@@ -9,6 +9,7 @@ extern unsigned short Z[3];
 extern unsigned short J[3];
 extern unsigned short L[3];
 
+
 extern const int I_ALTO, I_ANCHO;
 extern const int O_ALTO, O_ANCHO;
 extern const int T_ALTO, T_ANCHO;
@@ -17,4 +18,5 @@ extern const int Z_ALTO, Z_ANCHO;
 extern const int J_ALTO, J_ANCHO;
 extern const int L_ALTO, L_ANCHO;
 
+void generarL(unsigned int* tablero, int ancho);
 #endif // PIEZAS_H

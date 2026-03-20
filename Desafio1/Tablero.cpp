@@ -11,9 +11,17 @@ unsigned int* crearTablero(int altura){
     }
     return tablero;
 }
+unsigned int* crearRegistro(int altura){
+    unsigned int* registro;
+    registro = new unsigned int[altura];
+    for(int i = 0; i < altura; i++){
+        registro[i] = 0;
+    }
+    return registro;
+}
 
 
-void imprimir(int altura, int ancho,unsigned int* tablero){
+void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registro){
 
     cout << "      ______     __       _     " << endl
          << "     /_  __/__  / /______(_)____" << endl
@@ -23,11 +31,13 @@ void imprimir(int altura, int ancho,unsigned int* tablero){
 
     for(int i = 0; i<altura; i++){
         cout << "|";
-        tablero[i] = 0;
         for(int j = 0; j<ancho; j++){
             if(((tablero[i] >> j) & 1) == 1){
                 cout << "[]";
             }
+            else if(((registro[i] >> j) & 1) == 1){
+                    cout << "[]";
+                }
             else{
                 cout << " .";
             }
@@ -36,4 +46,11 @@ void imprimir(int altura, int ancho,unsigned int* tablero){
     }
 
     cout << endl << "Accion:   [A]Izquierda   [D]Derecha   [S]Abajo   [W]Rotar   [Q]Salir" << endl;
+}
+
+unsigned int* registroTablero(unsigned int* tablero,unsigned int* registro, int altura){
+    for(int i = 0; i < altura; i++){
+        registro[i] += tablero[i];
+    }
+    return registro;
 }

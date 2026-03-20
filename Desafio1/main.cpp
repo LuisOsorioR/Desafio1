@@ -1,16 +1,18 @@
 #include <iostream>
+#include <cstdlib>
 #include "piezas.h"
 #include "Sistema.h"
 #include "tablero.h"
 
 using namespace std;
 
-bool rejugar = true, alturaValid, anchoValid;
-int altura = 0, ancho = 0, correccion;
-unsigned int* tablero;
+bool rejugar = true, alturaValid, anchoValid, continuar = true, fichaActiva;
+int altura = 0, ancho = 0, correccion, aleatorio;
+unsigned int* tablero, *registro;
 
 int main()
 {
+    srand(time(0));
     while(rejugar){
         alturaValid = false;
         anchoValid = false;
@@ -38,8 +40,14 @@ int main()
                 anchoValid = false;
             }
         }
+        tablero = crearTablero(altura);
+        registro = crearRegistro(altura);
+        while(continuar){
+            aleatorio = rand()%7;
+            controlesL(tablero, registro, ancho, altura);
+        }
 
         tablero = crearTablero(altura);
-        imprimir(altura, ancho, tablero);
+        generarL(tablero, ancho);
     }
 }
