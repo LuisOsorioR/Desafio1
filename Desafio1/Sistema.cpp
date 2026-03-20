@@ -2,12 +2,12 @@
 #include "sistema.h"
 #include "piezas.h"
 #include "Tablero.h"
-const int Y = 0;
+
 
 using namespace std;
-/*bool colisionVerticalL(int Y, unsigned int* tablero){
+/*bool colisionVertical(int Y, unsigned int* tablero, unsigned int* registro, int alturaFig){
     bool colision;
-    if((tablero[Y+2] & tablero[Y+3]) != 0){
+    if((tablero[Y+alturaFig] & registro[Y+alturaFig+1]) != 0){
         colision = true;
     } else{
         colision = false;
@@ -40,10 +40,11 @@ int BajarL(int Y, unsigned int* tablero){
 
 void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
     char accion;
-    int X, Y;
+    int X, Y, alturaL;
     bool colisionY=false, colisionX;
     X = ancho/2;
     Y = 0;
+    alturaL = L_ALTO;
     generarL(tablero, X);
     while(!colisionY){
         imprimir(altura, ancho, tablero, registro);
@@ -60,12 +61,15 @@ void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int al
         case 'S':
         case 's':
             Y = BajarL(Y, tablero);
+
             break;
         }
-        if(accion == 'Q' || Y == altura-3){
+        //colisionY = colisionVertical(Y, tablero, registro, alturaL);
+        if(accion == 'Q' || Y == altura-3 || colisionY == true){
             break;
         }
     }
     registroTablero(tablero, registro, altura);
+    tablero[altura]=0;
 
 }

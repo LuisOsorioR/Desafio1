@@ -46,8 +46,6 @@ int main()
             aleatorio = rand()%7;
             controlesL(tablero, registro, ancho, altura);
         }
-
-        tablero = crearTablero(altura);
         generarL(tablero, ancho);
     }
 }
