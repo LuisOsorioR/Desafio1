@@ -7,12 +7,14 @@ using namespace std;
 
 bool rejugar = true, alturaValid, anchoValid, continuar = true, fichaActiva;
 int altura = 0, ancho = 0, correccion, aleatorio;
+unsigned int valorMax = 1;
 unsigned int* tablero, *registro;
 
 int main()
 {
     srand(time(0));
     while(rejugar){
+        continuar = true;
         alturaValid = false;
         anchoValid = false;
 
@@ -41,9 +43,15 @@ int main()
         }
         tablero = crearTablero(altura);
         registro = crearRegistro(altura);
+
+        for(int i = 1; i<=ancho; i++){
+            valorMax *= 2;
+        }
+        valorMax -= 1;
+
         while(continuar){
             aleatorio = rand()%7;
-            switch(aleatorio){
+            switch(0){
             case 0:
                 controlesL(tablero, registro, ancho, altura);
                 break;
@@ -66,6 +74,9 @@ int main()
                 controlesJ(tablero, registro, ancho, altura);
                 break;
             }
+            verificacion(registro, altura, valorMax);
+            continuar = estado(registro, tablero);
+            rejugar = false;
 
         }
     }

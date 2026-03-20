@@ -2,9 +2,34 @@
 #include "sistema.h"
 #include "piezas.h"
 #include "Tablero.h"
-
-
 using namespace std;
+
+void eliminarFila(unsigned int* registro, int altura){
+    for(int i = altura; i > 0; i--){
+        registro[i] = registro[i-1];
+    }
+    registro[0] = 0;
+}
+
+void verificacion(unsigned int* registro, int altura, unsigned int valorMax){
+    for(int i = 0; i < altura; i++){
+        if(registro[i] == valorMax){
+            eliminarFila(registro, i);
+            i--;
+        }
+    }
+}
+
+
+bool estado(unsigned int* registro, unsigned int* tablero){
+    if((registro[1] & tablero[0])!= 0){
+        return false;
+    }return true;
+}
+
+
+
+
 bool colisionVertical(int Y, unsigned int* tablero, unsigned int* registro, int alturaFig){
     for(int i = 0; i < alturaFig; i++){
         if( (tablero[Y + i]) & registro[Y + i + 1] ){
@@ -19,16 +44,20 @@ bool colisionHorizontalIzq(int Y, int alturaFig, int anchoFig, unsigned int* tab
         for(int i = 0; i < anchoFig ; i++){
             if(((tablero[Y+j]>>(1)) & registro[Y+j]) != 0){
                 return true;
+            } else if((tablero[Y+j] & 1) != 0){
+                return true;
             }
         }
     }
     return false;
 }
 
-bool colisionHorizontalDer(int Y, int alturaFig, int anchoFig, unsigned int* tablero, unsigned int* registro){
+bool colisionHorizontalDer(int Y, int ancho, int alturaFig, int anchoFig, unsigned int* tablero, unsigned int* registro){
     for (int j = 0 ; j < alturaFig ; j++){
         for(int i = 0; i < anchoFig ; i++){
             if(((tablero[Y+j]<<(1)) & registro[Y+j]) != 0){
+                return true;
+            } else if((tablero[Y+j] & 1 << (ancho-1)) != 0){
                 return true;
             }
         }
@@ -79,7 +108,7 @@ void controlesI(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaI, anchoI, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaI, anchoI, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaI, tablero);
             }
@@ -120,7 +149,7 @@ void controlesO(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaO, anchoO, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaO, anchoO, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaO, tablero);
             }
@@ -160,7 +189,7 @@ void controlesS(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaS, anchoS, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaS, anchoS, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaS, tablero);
             }
@@ -200,7 +229,7 @@ void controlesZ(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaZ, anchoZ, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaZ, anchoZ, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaZ, tablero);
             }
@@ -240,7 +269,7 @@ void controlesT(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaT, anchoT, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaT, anchoT, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaT, tablero);
             }
@@ -272,14 +301,14 @@ void controlesJ(unsigned int* tablero, unsigned int* registro, int ancho, int al
         switch(accion){
         case 'A':
         case 'a':
-            colisionX = colisionHorizontalIzq(Y, alturaJ, anchoJ, tablero, registro);
+            colisionX = colisionHorizontalIzq(Y,alturaJ, anchoJ, tablero, registro);
             if(!colisionX){
                 DesplazarIzq( Y, alturaJ, tablero);
             }
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaJ, anchoJ, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaJ, anchoJ, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaJ, tablero);
             }
@@ -319,7 +348,7 @@ void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         case 'D':
         case 'd':
-            colisionX = colisionHorizontalDer(Y, alturaL, anchoL, tablero, registro);
+            colisionX = colisionHorizontalDer(Y, ancho, alturaL, anchoL, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, alturaL, tablero);
             }
@@ -335,4 +364,5 @@ void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int al
         }
     }
     registroTablero(tablero, registro, altura);
+
 }
