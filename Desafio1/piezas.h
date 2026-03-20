@@ -19,4 +19,5 @@ extern const int J_ALTO, J_ANCHO;
 extern const int L_ALTO, L_ANCHO;
 
 void generarL(unsigned int* tablero, int ancho);
+void generarI(unsigned int* tablero, int ancho);
 #endif // PIEZAS_H

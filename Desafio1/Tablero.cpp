@@ -48,9 +48,8 @@ void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registr
     cout << endl << "Accion:   [A]Izquierda   [D]Derecha   [S]Abajo   [W]Rotar   [Q]Salir" << endl;
 }
 
-unsigned int* registroTablero(unsigned int* tablero,unsigned int* registro, int altura){
+void registroTablero(unsigned int* tablero,unsigned int* registro, int altura){
     for(int i = 0; i < altura; i++){
-        registro[i] += tablero[i];
+        registro[i] |= tablero[i];
     }
-    return registro;
 }

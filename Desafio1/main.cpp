@@ -43,8 +43,13 @@ int main()
         tablero = crearTablero(altura);
         registro = crearRegistro(altura);
         while(continuar){
-            aleatorio = rand()%7;
-            controlesL(tablero, registro, ancho, altura);
+            aleatorio = rand()%2;
+            switch(aleatorio){
+            case 1:
+                controlesL(tablero, registro, ancho, altura);
+            case 2:
+                controlesI(tablero, registro, ancho, altura);
+            }
         }
         generarL(tablero, ancho);
     }
