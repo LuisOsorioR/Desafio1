@@ -50,15 +50,38 @@ unsigned short L[3] = {
 };
 
 
-void generarL(unsigned int* tablero, int X){
-    tablero[0] = 0b1<<(X-1);
-    tablero[1] = 0b1<<(X-1);
-    tablero[2] = 0b11<<(X-1);
+void generarO(unsigned int* tablero, int X){
+    tablero[0] = 0b11<<(X-1);
+    tablero[1] = 0b11<<(X-1);
 }
 void generarI(unsigned int* tablero, int X){
     tablero[0] = 0b1<<(X-1);
     tablero[1] = 0b1<<(X-1);
     tablero[2] = 0b1<<(X-1);
     tablero[3] = 0b1<<(X-1);
+}
+void generarT(unsigned int* tablero, int X){
+    tablero[0] = 0b111<<(X-1);
+    tablero[1] = 0b1<<(X);
+}
+void generarS(unsigned int* tablero, int X){
+    tablero[0] = 0b1<<(X-1);
+    tablero[1] = 0b11<<(X-1);
+    tablero[2] = 0b1<<(X);
+}
+void generarZ(unsigned int* tablero, int X){
+    tablero[0] = 0b1<<(X);
+    tablero[1] = 0b11<<(X-1);
+    tablero[2] = 0b1<<(X-1);
+}
+void generarJ(unsigned int* tablero, int X){
+    tablero[0] = 0b1<<(X);
+    tablero[1] = 0b1<<(X);
+    tablero[2] = 0b11<<(X-1);
+}
+void generarL(unsigned int* tablero, int X){
+    tablero[0] = 0b1<<(X-1);
+    tablero[1] = 0b1<<(X-1);
+    tablero[2] = 0b11<<(X-1);
 }
 

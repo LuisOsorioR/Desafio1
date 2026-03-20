@@ -48,7 +48,7 @@ void DesplazarDer(int Y, int alturaFig, unsigned int* tablero){
     }
 }
 int Bajar(int Y, int alturaFig,unsigned int* tablero){
-    for(int j=alturaFig; j>0 ; j--){
+    for(int j=alturaFig; j>=0 ; j--){
         tablero[Y+j+1] = tablero[Y+j];
     }
     tablero[Y]=0;
@@ -90,7 +90,7 @@ void controlesI(unsigned int* tablero, unsigned int* registro, int ancho, int al
             break;
         }
         colisionY = colisionVertical(Y, tablero, registro, alturaI);
-        if(accion == 'Q' || Y == altura-3 || colisionY == true){
+        if(accion == 'Q' || Y == altura-4 || colisionY == true){
             break;
         }
     }
@@ -98,6 +98,204 @@ void controlesI(unsigned int* tablero, unsigned int* registro, int ancho, int al
 
 }
 
+void controlesO(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
+    char accion;
+    int X, Y, alturaO, anchoO;
+    bool colisionY = false, colisionX;
+    X = ancho/2;
+    Y = 0;
+    alturaO = O_ALTO;
+    anchoO = O_ANCHO;
+    generarO(tablero, X);
+    while(!colisionY){
+        imprimir(altura, ancho, tablero, registro);
+        cin >> accion;
+        switch(accion){
+        case 'A':
+        case 'a':
+            colisionX = colisionHorizontalIzq(Y, alturaO, anchoO, tablero, registro);
+            if(!colisionX){
+                DesplazarIzq( Y, alturaO, tablero);
+            }
+            break;
+        case 'D':
+        case 'd':
+            colisionX = colisionHorizontalDer(Y, alturaO, anchoO, tablero, registro);
+            if(!colisionX){
+                DesplazarDer(Y, alturaO, tablero);
+            }
+            break;
+        case 'S':
+        case 's':
+            Y = Bajar(Y, alturaO, tablero);
+            break;
+        }
+        colisionY = colisionVertical(Y, tablero, registro, alturaO);
+        if(accion == 'Q' || Y == altura-2 || colisionY == true){
+            break;
+        }
+    }
+    registroTablero(tablero, registro, altura);
+}
+
+void controlesS(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
+    char accion;
+    int X, Y, alturaS, anchoS;
+    bool colisionY = false, colisionX;
+    X = ancho/2;
+    Y = 0;
+    alturaS = S_ALTO;
+    anchoS = S_ANCHO;
+    generarS(tablero, X);
+    while(!colisionY){
+        imprimir(altura, ancho, tablero, registro);
+        cin >> accion;
+        switch(accion){
+        case 'A':
+        case 'a':
+            colisionX = colisionHorizontalIzq(Y, alturaS, anchoS, tablero, registro);
+            if(!colisionX){
+                DesplazarIzq( Y, alturaS, tablero);
+            }
+            break;
+        case 'D':
+        case 'd':
+            colisionX = colisionHorizontalDer(Y, alturaS, anchoS, tablero, registro);
+            if(!colisionX){
+                DesplazarDer(Y, alturaS, tablero);
+            }
+            break;
+        case 'S':
+        case 's':
+            Y = Bajar(Y, alturaS, tablero);
+            break;
+        }
+        colisionY = colisionVertical(Y, tablero, registro, alturaS);
+        if(accion == 'Q' || Y == altura-3 || colisionY == true){
+            break;
+        }
+    }
+    registroTablero(tablero, registro, altura);
+}
+
+void controlesZ(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
+    char accion;
+    int X, Y, alturaZ, anchoZ;
+    bool colisionY = false, colisionX;
+    X = ancho/2;
+    Y = 0;
+    alturaZ = Z_ALTO;
+    anchoZ = Z_ANCHO;
+    generarZ(tablero, X);
+    while(!colisionY){
+        imprimir(altura, ancho, tablero, registro);
+        cin >> accion;
+        switch(accion){
+        case 'A':
+        case 'a':
+            colisionX = colisionHorizontalIzq(Y, alturaZ, anchoZ, tablero, registro);
+            if(!colisionX){
+                DesplazarIzq( Y, alturaZ, tablero);
+            }
+            break;
+        case 'D':
+        case 'd':
+            colisionX = colisionHorizontalDer(Y, alturaZ, anchoZ, tablero, registro);
+            if(!colisionX){
+                DesplazarDer(Y, alturaZ, tablero);
+            }
+            break;
+        case 'S':
+        case 's':
+            Y = Bajar(Y, alturaZ, tablero);
+            break;
+        }
+        colisionY = colisionVertical(Y, tablero, registro, alturaZ);
+        if(accion == 'Q' || Y == altura-alturaZ || colisionY == true){
+            break;
+        }
+    }
+    registroTablero(tablero, registro, altura);
+}
+
+void controlesT(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
+    char accion;
+    int X, Y, alturaT, anchoT;
+    bool colisionY = false, colisionX;
+    X = ancho/2;
+    Y = 0;
+    alturaT = T_ALTO;
+    anchoT = T_ANCHO;
+    generarT(tablero, X);
+    while(!colisionY){
+        imprimir(altura, ancho, tablero, registro);
+        cin >> accion;
+        switch(accion){
+        case 'A':
+        case 'a':
+            colisionX = colisionHorizontalIzq(Y, alturaT, anchoT, tablero, registro);
+            if(!colisionX){
+                DesplazarIzq( Y, alturaT, tablero);
+            }
+            break;
+        case 'D':
+        case 'd':
+            colisionX = colisionHorizontalDer(Y, alturaT, anchoT, tablero, registro);
+            if(!colisionX){
+                DesplazarDer(Y, alturaT, tablero);
+            }
+            break;
+        case 'S':
+        case 's':
+            Y = Bajar(Y, alturaT, tablero);
+            break;
+        }
+        colisionY = colisionVertical(Y, tablero, registro, alturaT);
+        if(accion == 'Q' || Y == altura-alturaT || colisionY == true){
+            break;
+        }
+    }
+    registroTablero(tablero, registro, altura);
+}
+void controlesJ(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
+    char accion;
+    int X, Y, alturaJ, anchoJ;
+    bool colisionY = false, colisionX;
+    X = ancho/2;
+    Y = 0;
+    alturaJ = J_ALTO;
+    anchoJ = J_ANCHO;
+    generarL(tablero, X);
+    while(!colisionY){
+        imprimir(altura, ancho, tablero, registro);
+        cin >> accion;
+        switch(accion){
+        case 'A':
+        case 'a':
+            colisionX = colisionHorizontalIzq(Y, alturaJ, anchoJ, tablero, registro);
+            if(!colisionX){
+                DesplazarIzq( Y, alturaJ, tablero);
+            }
+            break;
+        case 'D':
+        case 'd':
+            colisionX = colisionHorizontalDer(Y, alturaJ, anchoJ, tablero, registro);
+            if(!colisionX){
+                DesplazarDer(Y, alturaJ, tablero);
+            }
+            break;
+        case 'S':
+        case 's':
+            Y = Bajar(Y, alturaJ, tablero);
+            break;
+        }
+        colisionY = colisionVertical(Y, tablero, registro, alturaJ);
+        if(accion == 'Q' || Y == altura-alturaJ || colisionY == true){
+            break;
+        }
+    }
+    registroTablero(tablero, registro, altura);
+}
 
 void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int altura){
     char accion;
@@ -137,5 +335,4 @@ void controlesL(unsigned int* tablero, unsigned int* registro, int ancho, int al
         }
     }
     registroTablero(tablero, registro, altura);
-
 }
