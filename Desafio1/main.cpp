@@ -51,29 +51,8 @@ int main()
 
         while(continuar){
             aleatorio = rand()%7;
-            switch(0){
-            case 0:
-                controlesL(tablero, registro, ancho, altura);
-                break;
-            case 1:
-                controlesI(tablero, registro, ancho, altura);
-                break;
-            case 2:
-                controlesO(tablero, registro, ancho, altura);
-                break;
-            case 3:
-                controlesS(tablero, registro, ancho, altura);
-                break;
-            case 4:
-                controlesZ(tablero, registro, ancho, altura);
-                break;
-            case 5:
-                controlesT(tablero, registro, ancho, altura);
-                break;
-            case 6:
-                controlesJ(tablero, registro, ancho, altura);
-                break;
-            }
+            controles(tablero, registro, ancho, altura, aleatorio);
+
             verificacion(registro, altura, valorMax);
             continuar = estado(registro, tablero);
             rejugar = false;
