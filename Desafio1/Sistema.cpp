@@ -4,6 +4,26 @@
 #include "Tablero.h"
 using namespace std;
 
+void rotacion(int X,int Y,int altoPieza, int anchoPieza, unsigned int* tablero){
+    unsigned int copia[4];
+    int bit, suma;
+    for(int i = 0; i < anchoPieza; i++){
+        suma = 0;
+        for(int j = 0; j < altoPieza; j++){
+            bit = (tablero[Y + j] >> (X + i)) & 1;
+            suma |= (bit << (altoPieza - 1 - j));
+        }
+        copia[i] = suma;
+    }
+    for(int j = 0; j < altoPieza; j++){
+        tablero[Y + j] = 0;
+    }
+    for(int i = 0; i < anchoPieza; i++){
+        tablero[Y + i] = copia[i] << X;
+    }
+}
+
+
 void eliminarFila(unsigned int* registro, int altura){
     for(int i = altura; i > 0; i--){
         registro[i] = registro[i-1];
@@ -87,9 +107,9 @@ int Bajar(int Y, int alturaFig,unsigned int* tablero){
 
 void controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza) {
     char accion;
-    int X = ancho / 2;
+    int X = ancho / 2 - 1;
     int Y = 0;
-    int altoPieza=0, anchoPieza=0;
+    int altoPieza=0, anchoPieza=0, aux=0;
     bool colisionY = false, colisionX;
 
     switch(tipoPieza) {
@@ -133,11 +153,19 @@ void controles(unsigned int* tablero, unsigned int* registro, int ancho, int alt
         imprimir(altura, ancho, tablero, registro);
         cin >> accion;
         switch(accion) {
+        case 'W':
+        case 'w':
+            rotacion(X,Y,altoPieza,anchoPieza,tablero);
+            aux = altoPieza;
+            altoPieza = anchoPieza;
+            anchoPieza = aux;
+            break;
         case 'A':
         case 'a':
             colisionX = colisionHorizontalIzq(Y, altoPieza, anchoPieza, tablero, registro);
             if(!colisionX){
                 DesplazarIzq(Y, altoPieza, tablero);
+                X -= 1;
             }
             break;
         case 'D':
@@ -145,6 +173,7 @@ void controles(unsigned int* tablero, unsigned int* registro, int ancho, int alt
             colisionX = colisionHorizontalDer(Y, ancho, altoPieza, anchoPieza, tablero, registro);
             if(!colisionX){
                 DesplazarDer(Y, altoPieza, tablero);
+                X += 1;
             }
             break;
         case 'S':

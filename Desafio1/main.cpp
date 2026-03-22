@@ -52,7 +52,6 @@ int main()
         while(continuar){
             aleatorio = rand()%7;
             controles(tablero, registro, ancho, altura, aleatorio);
-
             verificacion(registro, altura, valorMax);
             continuar = estado(registro, tablero);
             rejugar = false;

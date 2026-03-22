@@ -51,5 +51,6 @@ void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registr
 void registroTablero(unsigned int* tablero,unsigned int* registro, int altura){
     for(int i = 0; i < altura; i++){
         registro[i] |= tablero[i];
+        tablero[i] = tablero[0];
     }
 }
