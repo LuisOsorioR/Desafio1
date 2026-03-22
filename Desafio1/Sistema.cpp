@@ -24,7 +24,7 @@ void rotacion(int X,int Y,int altoPieza, int anchoPieza, unsigned int* tablero){
 }
 
 
-void eliminarFila(unsigned int* registro, int altura){
+void eliminarFila(unsigned int* registro, int altura){                        //fila completada
     for(int i = altura; i > 0; i--){
         registro[i] = registro[i-1];
     }
@@ -50,7 +50,7 @@ bool estado(unsigned int* registro, unsigned int* tablero){
 
 
 
-bool colisionVertical(int Y, unsigned int* tablero, unsigned int* registro, int alturaFig){
+bool colisionVertical(int Y, unsigned int* tablero, unsigned int* registro, int alturaFig){                 //colisiones
     for(int i = 0; i < alturaFig; i++){
         if( (tablero[Y + i]) & registro[Y + i + 1] ){
             return true;
@@ -86,7 +86,7 @@ bool colisionHorizontalDer(int Y, int ancho, int alturaFig, int anchoFig, unsign
 }
 
 
-void DesplazarIzq(int Y, int alturaFig, unsigned int* tablero){
+void DesplazarIzq(int Y, int alturaFig, unsigned int* tablero){                //movimientos
     for(int j=0; j<alturaFig;j++){
         tablero[Y+j] = tablero[Y+j] >> 1;
     }
@@ -105,7 +105,7 @@ int Bajar(int Y, int alturaFig,unsigned int* tablero){
     return Y;
 }
 
-bool controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza) {
+bool controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza, int siguientePieza) {   //comandos
     char accion;
     int X = ancho / 2 - 1;
     int Y = 0;
@@ -151,7 +151,7 @@ bool controles(unsigned int* tablero, unsigned int* registro, int ancho, int alt
     }
     while(!colisionY) {
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        imprimir(altura, ancho, tablero, registro);
+        imprimir(altura, ancho, tablero, registro, siguientePieza);
         cin >> accion;
         switch(accion) {
         case 'W':

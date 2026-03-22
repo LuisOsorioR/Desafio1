@@ -8,49 +8,71 @@ const int Z_ALTO = 3, Z_ANCHO = 2;
 const int J_ALTO = 3, J_ANCHO = 2;
 const int L_ALTO = 3, L_ANCHO = 2;
 
-unsigned short I[4] = {
-    0b1,
-    0b1,
-    0b1,
-    0b1
+unsigned short I[6] = {
+    0b000000,
+    0b001000,
+    0b001000,
+    0b001000,
+    0b001000,
+    0b000000
 };
 
-unsigned short O[2] = {
-    0b11,
-    0b11
+unsigned short O[6] = {
+    0b000000,
+    0b000000,
+    0b001100,
+    0b001100,
+    0b000000,
+    0b000000
 };
 
-unsigned short T[2] = {
-    0b111,
-    0b010
+unsigned short T[6] = {
+    0b000000,
+    0b000000,
+    0b011100,
+    0b001000,
+    0b000000,
+    0b000000
 };
 
-unsigned short S[3] = {
-    0b10,
-    0b11,
-    0b01
+unsigned short S[6] = {
+    0b000000,
+    0b000000,
+    0b001000,
+    0b001100,
+    0b000100,
+    0b000000
 };
 
-unsigned short Z[3] = {
-    0b01,
-    0b11,
-    0b10
+unsigned short Z[6] = {
+    0b000000,
+    0b000000,
+    0b000100,
+    0b001100,
+    0b001000,
+    0b000000
 };
 
-unsigned short J[3] = {
-    0b01,
-    0b01,
-    0b11
+unsigned short J[6] = {
+    0b000000,
+    0b000000,
+    0b000100,
+    0b000100,
+    0b001100,
+    0b000000
 };
 
-unsigned short L[3] = {
-    0b10,
-    0b10,
-    0b11
+unsigned short L[6] = {
+    0b000000,
+    0b000000,
+    0b001000,
+    0b001000,
+    0b001100,
+    0b000000
 };
 
 
-void generarO(unsigned int* tablero, int X){
+void generarO(unsigned int* tablero, int X){         //Generar
     tablero[0] = 0b11<<(X);
     tablero[1] = 0b11<<(X);
 }

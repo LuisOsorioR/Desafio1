@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Tablero.h"
+#include "piezas.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ unsigned int* crearRegistro(int altura){
 }
 
 
-void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registro){
+void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registro, int siguientePieza){
 
     cout << "      ______     __       _     " << endl
          << "     /_  __/__  / /______(_)____" << endl
@@ -42,10 +43,51 @@ void imprimir(int altura, int ancho,unsigned int* tablero, unsigned int* registr
                 cout << " .";
             }
         }
-        cout << "|" << endl;
-    }
+        cout << "|          ";
+        if(i <= 5){
+            impSigPie(siguientePieza, i);
+        }
+        cout << endl;
 
+    }
     cout << endl << "Accion:   [A]Izquierda   [D]Derecha   [S]Abajo   [W]Rotar   [Q]Salir" << endl;
+}
+
+void impSigPie(int siguientePieza,int i){
+    unsigned short* piezaActual;
+    switch(siguientePieza) {
+    case 0:
+        piezaActual = L;
+        break;
+    case 1:
+        piezaActual = I;
+        break;
+    case 2:
+        piezaActual = O;
+        break;
+    case 3:
+        piezaActual = S;
+        break;
+    case 4:
+        piezaActual = Z;
+        break;
+    case 5:
+        piezaActual = T;
+        break;
+    case 6:
+        piezaActual = J;
+        break;
+    }
+    cout << "|";
+    for(int j = 5; j>=0; j--){
+        if(((piezaActual[i] >> j) & 1) == 1){
+            cout << "[]";
+        }
+        else{
+            cout << " .";
+        }
+    }
+    cout << "|";
 }
 
 void registroTablero(unsigned int* tablero,unsigned int* registro, int altura){

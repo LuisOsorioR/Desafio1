@@ -6,7 +6,7 @@
 using namespace std;
 
 bool alturaValid, anchoValid, continuar = true, fichaActiva;
-int altura = 0, ancho = 0, correccion, aleatorio, rejugar = 1;
+int altura = 0, ancho = 0, correccion, aleatorio, siguientePieza, rejugar = 1;
 unsigned int valorMax = 1;
 unsigned int* tablero, *registro;
 
@@ -19,7 +19,7 @@ int main()
         anchoValid = false;
 
         cout << "Bienvenido a Tetris por turnos." << endl;
-        while(alturaValid == false || anchoValid == false){
+        while(alturaValid == false || anchoValid == false){             //Definir altura y ancho del tablero
             while(alturaValid == false){
                 cout << "Ingrese una altura valida para el tablero del tetris(minimo 8): ";
                 cin >> altura;
@@ -41,7 +41,7 @@ int main()
                 anchoValid = false;
             }
         }
-        tablero = crearTablero(altura);
+        tablero = crearTablero(altura);                 //creación de tableros
         registro = crearRegistro(altura);
 
         for(int i = 1; i<=ancho; i++){
@@ -49,15 +49,18 @@ int main()
         }
         valorMax -= 1;
 
-        while(continuar){
-            aleatorio = rand()%7;
-            continuar = controles(tablero, registro, ancho, altura, aleatorio);
+
+        siguientePieza = rand()%7;
+        while(continuar){                               //juego
+            aleatorio = siguientePieza;
+            siguientePieza = rand()%7;
+            continuar = controles(tablero, registro, ancho, altura, aleatorio, siguientePieza);
             verificacion(registro, altura, valorMax);
             if(continuar){
                 continuar = estado(registro, tablero);
             }
         }
-        delete[] tablero;
+        delete[] tablero;                               //postJuego
         delete[] registro;
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         gameOver();

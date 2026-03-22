@@ -1,13 +1,13 @@
 #ifndef PIEZAS_H
 #define PIEZAS_H
 
-extern unsigned short I[4];
-extern unsigned short O[2];
-extern unsigned short T[2];
-extern unsigned short S[3];
-extern unsigned short Z[3];
-extern unsigned short J[3];
-extern unsigned short L[3];
+extern unsigned short I[6];
+extern unsigned short O[6];
+extern unsigned short T[6];
+extern unsigned short S[6];
+extern unsigned short Z[6];
+extern unsigned short J[6];
+extern unsigned short L[6];
 
 
 extern const int I_ALTO, I_ANCHO;
