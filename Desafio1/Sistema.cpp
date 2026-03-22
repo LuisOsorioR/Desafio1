@@ -105,7 +105,7 @@ int Bajar(int Y, int alturaFig,unsigned int* tablero){
     return Y;
 }
 
-void controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza) {
+bool controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza) {
     char accion;
     int X = ancho / 2 - 1;
     int Y = 0;
@@ -150,6 +150,7 @@ void controles(unsigned int* tablero, unsigned int* registro, int ancho, int alt
         break;
     }
     while(!colisionY) {
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         imprimir(altura, ancho, tablero, registro);
         cin >> accion;
         switch(accion) {
@@ -180,11 +181,15 @@ void controles(unsigned int* tablero, unsigned int* registro, int ancho, int alt
         case 's':
             Y = Bajar(Y, altoPieza, tablero);
             break;
+        case 'Q':
+        case 'q':
+            return false;
         }
         colisionY = colisionVertical(Y, tablero, registro, altoPieza);
-        if(accion == 'Q' || accion == 'q' || Y == (altura - altoPieza) || colisionY == true) {
+        if(Y == (altura - altoPieza) || colisionY == true) {
             break;
         }
     }
     registroTablero(tablero, registro, altura);
+    return true;
 }

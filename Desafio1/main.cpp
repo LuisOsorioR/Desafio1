@@ -5,8 +5,8 @@
 
 using namespace std;
 
-bool rejugar = true, alturaValid, anchoValid, continuar = true, fichaActiva;
-int altura = 0, ancho = 0, correccion, aleatorio;
+bool alturaValid, anchoValid, continuar = true, fichaActiva;
+int altura = 0, ancho = 0, correccion, aleatorio, rejugar = 1;
 unsigned int valorMax = 1;
 unsigned int* tablero, *registro;
 
@@ -51,11 +51,19 @@ int main()
 
         while(continuar){
             aleatorio = rand()%7;
-            controles(tablero, registro, ancho, altura, aleatorio);
+            continuar = controles(tablero, registro, ancho, altura, aleatorio);
             verificacion(registro, altura, valorMax);
-            continuar = estado(registro, tablero);
-            rejugar = false;
-
+            if(continuar){
+                continuar = estado(registro, tablero);
+            }
         }
+        delete[] tablero;
+        delete[] registro;
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        gameOver();
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "Ingrese un valor diferente a 0 si desea rejugar: ";
+        cin >> rejugar;
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     }
 }

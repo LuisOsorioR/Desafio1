@@ -1,7 +1,7 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
-void controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza);
+bool controles(unsigned int* tablero, unsigned int* registro, int ancho, int altura, int tipoPieza);
 
 void DesplazarLizq(int Y, unsigned int* tablero);
 void DesplazarLder(int Y, unsigned int* tablero);

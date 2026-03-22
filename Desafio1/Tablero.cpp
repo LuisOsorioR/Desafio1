@@ -54,3 +54,15 @@ void registroTablero(unsigned int* tablero,unsigned int* registro, int altura){
         tablero[i] = tablero[0];
     }
 }
+
+void gameOver(){
+        cout << R"(
+          _____                         ____
+         / ____|                       / __ \
+        | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __
+        | | |_ |/ _` | '_ ` _ \ / _ \ | |  | \ \ / / _ \ '__|
+        | |__| | (_| | | | | | |  __/ | |__| |\ V /  __/ |
+         \_____|\__,_|_| |_| |_|\___|  \____/  \_/ \___|_|
+
+    )" << endl;
+}
